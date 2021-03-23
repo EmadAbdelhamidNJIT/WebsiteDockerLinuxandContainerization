@@ -2,12 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c77d5205-361a-485f-aab3-0780c4ec27d5" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/images/apache2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/apache_is_running.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/docker_run_command.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/my_web_servers.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/containerization.html" beforeDir="false" afterPath="$PROJECT_DIR$/containerization.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dockerTutorial.html" beforeDir="false" afterPath="$PROJECT_DIR$/dockerTutorial.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/virtualization.html" beforeDir="false" afterPath="$PROJECT_DIR$/virtualization.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/virtualizationVscontainerization.html" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,7 +55,7 @@
       <updated>1616408036969</updated>
       <workItem from="1616408038421" duration="81000" />
       <workItem from="1616408159575" duration="4867000" />
-      <workItem from="1616467018656" duration="3684000" />
+      <workItem from="1616467018656" duration="4137000" />
     </task>
     <task id="LOCAL-00001" summary="feature: addde virtualization.html">
       <created>1616470404400</created>
@@ -70,7 +71,14 @@
       <option name="project" value="LOCAL" />
       <updated>1616470670602</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="feature: addde dockerTutorial.html">
+      <created>1616471564367</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1616471564367</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -80,6 +88,7 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="feature: addde virtualization.html" />
     <MESSAGE value="feature: addde containerization.html" />
-    <option name="LAST_COMMIT_MESSAGE" value="feature: addde containerization.html" />
+    <MESSAGE value="feature: addde dockerTutorial.html" />
+    <option name="LAST_COMMIT_MESSAGE" value="feature: addde dockerTutorial.html" />
   </component>
 </project>
