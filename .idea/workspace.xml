@@ -2,11 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c77d5205-361a-485f-aab3-0780c4ec27d5" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/WebsiteDockerLinuxandContainerization.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/containerization.html" beforeDir="false" afterPath="$PROJECT_DIR$/containerization.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/virtualization.html" beforeDir="false" afterPath="$PROJECT_DIR$/virtualization.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,7 +47,8 @@
       <option name="presentableId" value="Default" />
       <updated>1616408036969</updated>
       <workItem from="1616408038421" duration="81000" />
-      <workItem from="1616408159575" duration="1371000" />
+      <workItem from="1616408159575" duration="4867000" />
+      <workItem from="1616467018656" duration="2393000" />
     </task>
     <servers />
   </component>
