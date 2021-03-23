@@ -2,8 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c77d5205-361a-485f-aab3-0780c4ec27d5" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/images/Moby-logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/linux" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/linux.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/linux.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LinuxCommands.html" beforeDir="false" afterPath="$PROJECT_DIR$/LinuxCommands.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,7 +54,7 @@
       <updated>1616408036969</updated>
       <workItem from="1616408038421" duration="81000" />
       <workItem from="1616408159575" duration="4867000" />
-      <workItem from="1616467018656" duration="4615000" />
+      <workItem from="1616467018656" duration="5736000" />
     </task>
     <task id="LOCAL-00001" summary="feature: addde virtualization.html">
       <created>1616470404400</created>
@@ -80,7 +84,14 @@
       <option name="project" value="LOCAL" />
       <updated>1616472041696</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="feature: LinuxCommands.html">
+      <created>1616472538627</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1616472538627</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -92,6 +103,7 @@
     <MESSAGE value="feature: addde containerization.html" />
     <MESSAGE value="feature: addde dockerTutorial.html" />
     <MESSAGE value="feature: addde README.md" />
-    <option name="LAST_COMMIT_MESSAGE" value="feature: addde README.md" />
+    <MESSAGE value="feature: LinuxCommands.html" />
+    <option name="LAST_COMMIT_MESSAGE" value="feature: LinuxCommands.html" />
   </component>
 </project>
