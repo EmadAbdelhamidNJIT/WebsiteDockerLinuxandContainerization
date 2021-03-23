@@ -23,7 +23,6 @@
                 <a href="index.html" class="nav-item nav-link active">Home</a>
                 <a href="virtualization.html" class="nav-item nav-link">virtualization</a>
                 <a href="containerization.html" class="nav-item nav-link">containerization</a>
-                <a href="virtualizationVscontainerization.html" class="nav-item nav-link">Virtualization Vs Containerization</a>
                 <a href="dockerTutorial.html" class="nav-item nav-link">Docker Tutorial</a>
                 <a href="LinuxCommands.html" class="nav-item nav-link">Basic Linux Commands</a>
                 <a href="DockerWithPycharm.html" class="nav-item nav-link">Docker with Pycharm</a>
@@ -33,28 +32,218 @@
 </nav>
 
 <div class="container">
-    <h1>How the internet works Website</h1>
+    <h1></h1>
     <div class="jumbotron">
-        <h3>W</h3>
-        <p class="lead">.</p><br>
-        <a href=""><img
-                src="" width="100%"
-                height="100%"></a>
-        <br><br>
-        <p><a href="https://en.wikipedia.org/wiki/Internet" target="_blank" class="btn btn-success btn-lg">II</a></p><br>
-    </div>
 
-    <hr>
-    <footer>
-        <div class="row">
-            <div class="col-md-6">
-                <p>Website on Docker, Linux, and Containerization</p>
+        <p class="lead">
+        <div class="content">
+            <a href="/pycharm/category/features/" class="tag">Features</a>
+            <h1>Using Docker in PyCharm</h1>
+            <div class="post-info">
+                <img src="https://secure.gravatar.com/avatar/b4074618deb7ef0a1c277dc68af4e1b8?s=50&amp;r=g" width="50"
+                     height="50" alt="Avatar"
+                     class="avatar avatar-50 wp-user-avatar wp-user-avatar-50 photo avatar-defaultavatar">
+                <div class="post-info__text">
+                    <a href="https://blog.jetbrains.com/author/pauleveritt1">Paul Everitt</a>
+                    <time class="publish-date" data-year="2015" data-month="12" data-day="15">December 14, 2015</time>
+                </div>
             </div>
-            <div class="col-md-6 text-md-right">
+            <p><strong>Please note:&nbsp;</strong>this blog post was written in 2015, and parts of it have become
+                outdated. If you’re using Docker Compose, please <a
+                        href="https://blog.jetbrains.com/pycharm/2017/03/docker-compose-getting-flask-up-and-running/">read
+                    our newer blog post on using Docker Compose.</a></p>
+            <hr>
+            <p>Modern development workflows emphasize isolation and reproducability in development and production.&nbsp;<a
+                    href="https://www.docker.com/">Docker</a>&nbsp;and its platform approach to containers has become
+                very popular. With PyCharm Professional Edition 5,&nbsp;<a
+                        href="https://blog.jetbrains.com/pycharm/2015/10/announcing-pycharm-5-eap-143-165-docker-integration/">Docker
+                    is now supported</a>&nbsp;as a remote interpreter.</p>
+            <p>Let’s take a look at PyCharm’s Docker integration in action.</p>
+            <div id="summary">
+                <h2>Summary</h2>
+                <ul>
+                    <li>Get a Django-oriented Docker image pulled locally</li>
+                    <li>Make a sample Django project</li>
+                    <li>Create a Docker interpeter to run it</li>
+                    <li>The Django run configuration makes a new container on start and removes it on stop</li>
+                </ul>
+            </div>
+            <div id="overview">
+                <h2>Overview</h2>
+                <p>In Python, when you run an application – a Django site, a database script, etc. – you are running it
+                    in an environment. Python has some tools to manage the environment and make it reproducible, such as
+                    virtual environments, pip&nbsp;<code>requirements.txt</code>&nbsp;files,
+                    and&nbsp;<code>setup.py</code>&nbsp;dependencies. But what about the non-Python parts of
+                    application?</p>
+                <p>Containers are one solution to this. In Docker, a container is an isolated universe with software,
+                    running inside your computer. They are fast and easy to create, start, stop, and destroy. This is
+                    ideal, not just for development, but for deployment as well.</p>
+                <p>PyCharm 5 provides the beginning of a series of steps towards productive development using containers
+                    and Docker. Namely, PyCharm 5 supports project interpreters that are executed in a Docker
+                    container.</p>
+            </div>
+            <div id="preparation">
+                <h2>Preparation</h2>
+                <p>First, make sure&nbsp;<code>docker</code>&nbsp;and&nbsp;<code>docker-machine</code>&nbsp;are setup in
+                    your environment. The Docker installation is painless and the&nbsp;<a
+                            href="https://docs.docker.com/machine/install-machine/">website docs</a>&nbsp;are quite
+                    friendly. You’ll need a Docker “host” virtual machine setup and running, including on Linux. On
+                    Windows and OS X, installing the Docker Toolbox is effortless.</p>
+                <p>Next, we have to decide what software we want in our containers. In Docker, containers are built
+                    using “images”: collections of pre-installed software plus configuration that is called during
+                    container creation. Unlike other interpreters in PyCharm, you don’t visit the&nbsp;<code>Project&nbsp;Interpreter</code>&nbsp;preferences
+                    to add Python packages. All dependencies need to be baked into the Docker image you choose.</p>
+                <p>This blog post is based on the “minimum/docker-django-mysite“ Docker&nbsp;image, which includes
+                    enough Python/Django software to run the&nbsp;PyCharm-generated Django starter project. You can
+                    fetch that onto your&nbsp;system with this command:</p>
+                <div>
+                    <div>
+                        <pre>$ docker pull minimum/docker-django-mysite</pre>
+                    </div>
+                </div>
+                <p>Once that Docker image is locally available&nbsp;<em>and</em>&nbsp;the Docker “host” is running and
+                    knows about it, PyCharm can make Docker interpreters for your project, as containers based on that
+                    image.</p>
+                <p>Alternatively, you can skip this step and later pull in the image while&nbsp;creating the
+                    Docker-based remote interpreter by simply typing in&nbsp;the image name during creation.</p>
+                <div>
+                    <p><em>Note: You have the option of making your own image as well, using
+                        a&nbsp;<code>Dockerfile</code>. Once you make the image, you can tell PyCharm to make Docker
+                        interpreters based on it.</em></p>
+                </div>
+            </div>
+            <div id="create-django-project">
+                <h2>Create Django Project</h2>
+                <p>Let’s make a Django project, then make a Docker interpreter for it. In PyCharm, choose&nbsp;<code>File&nbsp;-&gt;&nbsp;New&nbsp;Project</code>,
+                    click on&nbsp;<code>Django</code>, and follow the normal process for making a Django project.</p>
+                <p>During project creation, you’ll have to use a local interpreter. If you try to make a Docker
+                    interpreter, PyCharm will give a warning saying you can only use a local interpreter.</p>
+                <p>The result of this step is a directory on your local computer with sample Django code and a
+                    Django-specific PyCharm Run Configuration.</p>
+            </div>
+            <div id="make-pycharm-docker-interpreter">
+                <h2>Make PyCharm Docker Interpreter</h2>
+                <p>On to the important part. We need to define a “remote interpreter” that runs in a PyCharm Docker
+                    container.</p>
+                <p>First, go to&nbsp;<code>Preferences&nbsp;-&gt;&nbsp;Project&nbsp;Interpreter</code>&nbsp;and click on
+                    the gear to the right of&nbsp;<code>Project&nbsp;Interpreter</code>&nbsp;near the top. In
+                    the&nbsp;<code>Configure&nbsp;Remote&nbsp;Python&nbsp;Interpreter</code>dialog, click
+                    the&nbsp;<code>Docker</code>&nbsp;button.</p>
+                <p>Click the menu dropdown for&nbsp;<code>Machine&nbsp;Name</code>. It will likely have one entry named&nbsp;<code>default</code>.
+                    Choose that, and you will see the following:</p>
+                <p><a href="https://blog.jetbrains.com/wp-content/uploads/2015/12/pycharm-docker_interpreter.png"><img
+                        loading="lazy" class="alignnone size-full wp-image-3578"
+                        src="https://blog.jetbrains.com/wp-content/uploads/2015/12/pycharm-docker_interpreter.png"
+                        alt="docker_interpreter" width="661" height="503"></a></p>
+                <p>Choosing&nbsp;<code>default</code>&nbsp;gives PyCharm a way to find the Docker daemon, which can let
+                    PyCharm know which images are available locally. Hence the dropdown for&nbsp;<code>Images</code>.
+                    Click on the dropdown and choose&nbsp;<code>minimum/docker-django-mysite:latest</code>&nbsp;as the
+                    image, then click&nbsp;<code>Ok</code>.</p>
+                <p>You now have a Docker container that will be used as your project interpreter. PyCharm features like
+                    autocompletion, code inspections, and checks will be driven by this interpreter.</p>
+            </div>
+            <div id="run-django">
+                <h2>Run Django</h2>
+                <p>Now that we have a Docker container for our project interpreter, let’s use our Django-flavored Run
+                    Configuration to run it. Just to be safe, edit the run configuration to make sure it is using the
+                    Docker-oriented interpreter.</p>
+                <p>What does PyCharm do when it runs this configuration:</p>
+                <ol>
+                    <li>First, it creates and starts a new container based on the image we named when creating the
+                        project interpreter.
+                    </li>
+                    <li>This container mounts your project directory into the container
+                        at&nbsp;<code>/opt/project</code>&nbsp;in the container.&nbsp;<em>Note: On Linux, you currently
+                            have to perform this volume mapping manually.</em></li>
+                    <li>This container also mounts volumes needed for PyCharm to do its work: Python skeletons and
+                        Python library sources.
+                    </li>
+                    <li>It then executes the run configuration’s Python command.</li>
+                </ol>
+                <p>If you are running PyCharm 5.0.2 or older, there is one fix you need to do:</p>
+                <ul>
+                    <li>Run -&gt; Edit Configurations and select the PyCharm-generated Djano run configuration</li>
+                    <li>In the&nbsp;<code>Host</code>&nbsp;field, enter&nbsp;<code>0.0.0.0</code></li>
+                </ul>
+                <p>When you click the “Run” button, Django will be started. Yay, we are running a container! In fact, we
+                    can go on to test running, debugging, code coverage, profiling, and all the other ways to run a
+                    configuration.&nbsp;But first, let’s click the link in the console to open&nbsp;the Django site in
+                    our browser:</p>
+                <p><a href="https://blog.jetbrains.com/wp-content/uploads/2015/12/pycharm-django_admin.png"><img
+                        loading="lazy" class="alignnone size-full wp-image-3577"
+                        src="https://blog.jetbrains.com/wp-content/uploads/2015/12/pycharm-django_admin.png"
+                        alt="django_admin" width="756" height="565"></a><br>
+                    You can confirm this using the following Docker commands:</p>
+                <div>
+                    <div>
+                        <pre>$ docker ps -l</pre>
+                    </div>
+                </div>
+                <p>This shows the most recently-run container. As you can see, our&nbsp;<code>minimum/docker-django-mysite</code>-based
+                    container is currently running.</p>
+                <p>Likewise, when you click the “Stop” button in PyCharm to stop the running Django configuration,
+                    PyCharm not only stops Django, but it also stops the Docker container. In fact, it deletes the
+                    container. Each time you run, PyCharm creates a new Docker container and starts it.</p>
+                <p>You can confirm this. After re-starting the Django run configuration, type:</p>
+                <div>
+                    <div>
+                        <pre>$ docker ps -l</pre>
+                    </div>
+                </div>
+                <p>The value in the&nbsp;<code>CONTAINER&nbsp;ID</code>&nbsp;column, as well as
+                    the&nbsp;<code>NAMES</code>&nbsp;value, is different from the previous values we got from running&nbsp;<code>docker&nbsp;ps&nbsp;-l</code>.
+                </p>
+            </div>
+            <div id="current-limitations">
+                <h2>Current Limitations</h2>
+                <p>Docker integration in PyCharm is already useful, but is still only a start. Much more is being done
+                    for future releases. For example:</p>
+                <ul>
+                    <li><em>Docker Compose</em>. This is a big item and a frequently-requested feature. The effort for
+                        this is tracked in a&nbsp;<a href="https://youtrack.jetbrains.com/issue/PY-17573">YouTrack
+                            ticket</a>&nbsp;in the PyCharm ticket system and work is already being scheduled. Please
+                        vote and leave any comments you might have.
+                    </li>
+                    <li><em>Linux mounts</em>. As noted in the PyCharm online help, on Linux, you have to mount your
+                        project directory manually via VirtualBox. This issue is obviated by work on the next point.
+                    </li>
+                    <li><em>Customizing the container</em>. Docker lets you pass arguments when creating/running a
+                        container. These arguments include volumes to mount and ports to forward. PyCharm doesn’t
+                        currently let you customize this in the run configuration, but this is being worked on.
+                    </li>
+                    <li><em>Only Django for web ports</em>. If you want a container with HTTP (or any other) ports
+                        available, the Django run configuration is the only one, and that is only for HTTP. Other run
+                        configurations (Flask, Pyramid, etc.) won’t forward any ports. Nor will attaching to a database,
+                        or orchestrating multi-container apps (unless your Dockerfile forwards the ports.) This is
+                        really just emphasizing the previous point, and as said there, help is on its way.
+                    </li>
+                </ul>
+            </div>
 
-            </div>
+            <div class="content__pagination"><a class="content__pagination-prev"
+                                                href="https://blog.jetbrains.com/pycharm/2015/12/pycharm-5-0-2-update-released-along-with-new-jetbrains-branding/"><i
+                    class="icon-arrow-left"></i> PyCharm 5.0.2 update released along with new JetBrains branding</a><a
+                    class="content__pagination-next"
+                    href="https://blog.jetbrains.com/pycharm/2015/12/pycharm-5-0-3-eap-is-available/">PyCharm 5.0.3 EAP
+                is Available <i class="icon-arrow-right"></i></a></div>
         </div>
-    </footer>
-</div>
+        </p>
+        <br>
+
+        <br><br>
+
+
+        <hr>
+        <footer>
+            <div class="row">
+                <div class="col-md-6">
+                    <p>Website on Docker, Linux, and Containerization</p>
+                </div>
+                <div class="col-md-6 text-md-right">
+
+                </div>
+            </div>
+        </footer>
+    </div>
 </body>
 </html>
